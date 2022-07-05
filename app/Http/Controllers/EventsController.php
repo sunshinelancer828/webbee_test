@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Workshop;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -101,7 +102,7 @@ class EventsController extends BaseController
      */
 
     public function getEventsWithWorkshops() {
-        $comments = Event::all()->workshops;
+       return Event::all()->workshops;
     }
 
 
@@ -180,6 +181,7 @@ class EventsController extends BaseController
      */
 
     public function getFutureEventsWithWorkshops() {
-        throw new \Exception('implement in coding task 2');
+       $events = Event::Workshop()->whereDate('start', '<=', '2014-07-10')->groupBy('event_id')
+       return Event::whereIn('id', $events)->get();
     }
 }
